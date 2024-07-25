@@ -45,6 +45,7 @@
     "turbo": "^1.9.3"
   },
   "name": "@documenso/root",
+  "version": "1.5.6",
   "workspaces": [
     "apps/*",
     "packages/*"
