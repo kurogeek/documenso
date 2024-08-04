@@ -26,6 +26,7 @@
     "reset:hard": "npm run clean && npm i && npm run prisma:generate",
     "precommit": "npm install && git add package.json package-lock.json"
   },
+  "packageManager": "npm@8.6.0",
   "engines": {
     "npm": ">=8.6.0",
     "node": ">=18.0.0"
