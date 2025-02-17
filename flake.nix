@@ -61,9 +61,7 @@
             patches = [
               ./fonts.patch
             ];
-            patchPhase = ''
-              npm update --force --legacy-peer-deps
-            '';
+
             postPatch = let
               gfonts = pkgs.google-fonts.override { fonts = [
                 "Inter" "Caveat"
