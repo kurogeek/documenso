@@ -1,0 +1,152 @@
+diff --git a/apps/web/src/app/layout.tsx b/apps/web/src/app/layout.tsx
+index 53d73520..fcb38d23 100644
+--- a/apps/web/src/app/layout.tsx
++++ b/apps/web/src/app/layout.tsx
+@@ -1,6 +1,6 @@
+ import { Suspense } from 'react';
+ 
+-import { Caveat, Inter } from 'next/font/google';
++import localFont from 'next/font/local';
+ 
+ import { AxiomWebVitals } from 'next-axiom';
+ import { PublicEnvScript } from 'next-runtime-env';
+@@ -20,8 +20,8 @@ import { PostHogPageview } from '~/providers/posthog';
+ 
+ import './globals.css';
+ 
+-const fontInter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+-const fontCaveat = Caveat({ subsets: ['latin'], variable: '--font-signature' });
++const fontInter = localFont({ src: './Inter.ttf', variable: '--font-sans' });
++const fontCaveat = localFont({ src: './Caveat.ttf', variable: '--font-signature' });
+ 
+ export function generateMetadata() {
+   return {
+diff --git a/packages/ui/primitives/document-flow/add-fields.tsx b/packages/ui/primitives/document-flow/add-fields.tsx
+index f6b1572d..54c67e98 100644
+--- a/packages/ui/primitives/document-flow/add-fields.tsx
++++ b/packages/ui/primitives/document-flow/add-fields.tsx
+@@ -2,7 +2,7 @@
+ 
+ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+ 
+-import { Caveat } from 'next/font/google';
++import localFont from 'next/font/local';
+ 
+ import { Trans, msg } from '@lingui/macro';
+ import { useLingui } from '@lingui/react';
+@@ -70,9 +70,9 @@ import { FieldAdvancedSettings } from './field-item-advanced-settings';
+ import { MissingSignatureFieldDialog } from './missing-signature-field-dialog';
+ import { type DocumentFlowStep, FRIENDLY_FIELD_TYPE } from './types';
+ 
+-const fontCaveat = Caveat({
+-  weight: ['500'],
+-  subsets: ['latin'],
++const fontCaveat = localFont({
++  src: '../Caveat.ttf',
++  weight: '500',
+   display: 'swap',
+   variable: '--font-caveat',
+ });
+diff --git a/packages/ui/primitives/document-flow/field-item.tsx b/packages/ui/primitives/document-flow/field-item.tsx
+index 6515816b..ae1b4e84 100644
+--- a/packages/ui/primitives/document-flow/field-item.tsx
++++ b/packages/ui/primitives/document-flow/field-item.tsx
+@@ -2,7 +2,7 @@
+ 
+ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+ 
+-import { Caveat } from 'next/font/google';
++import localFont from 'next/font/local';
+ 
+ import { CopyPlus, Settings2, Trash } from 'lucide-react';
+ import { createPortal } from 'react-dom';
+@@ -22,9 +22,9 @@ import type { TDocumentFlowFormSchema } from './types';
+ 
+ type Field = TDocumentFlowFormSchema['fields'][0];
+ 
+-const fontCaveat = Caveat({
+-  weight: ['500'],
+-  subsets: ['latin'],
++const fontCaveat = localFont({
++  src: '../Caveat.ttf',
++  weight: '500',
+   display: 'swap',
+   variable: '--font-caveat',
+ });
+diff --git a/packages/ui/primitives/document-flow/show-field-item.tsx b/packages/ui/primitives/document-flow/show-field-item.tsx
+index 8007aff0..2a0fb490 100644
+--- a/packages/ui/primitives/document-flow/show-field-item.tsx
++++ b/packages/ui/primitives/document-flow/show-field-item.tsx
+@@ -1,6 +1,6 @@
+ 'use client';
+ 
+-import { Caveat } from 'next/font/google';
++import localFont from 'next/font/local';
+ 
+ import { useLingui } from '@lingui/react';
+ import type { Prisma } from '@prisma/client';
+@@ -14,9 +14,9 @@ import { cn } from '../../lib/utils';
+ import { Card, CardContent } from '../card';
+ import { FRIENDLY_FIELD_TYPE } from './types';
+ 
+-const fontCaveat = Caveat({
+-  weight: ['500'],
+-  subsets: ['latin'],
++const fontCaveat = localFont({
++  src: '../Caveat.ttf',
++  weight: '500',
+   display: 'swap',
+   variable: '--font-caveat',
+ });
+diff --git a/packages/ui/primitives/signature-pad/signature-pad.tsx b/packages/ui/primitives/signature-pad/signature-pad.tsx
+index bb84bfd5..6ddb6665 100644
+--- a/packages/ui/primitives/signature-pad/signature-pad.tsx
++++ b/packages/ui/primitives/signature-pad/signature-pad.tsx
+@@ -3,7 +3,7 @@
+ import type { HTMLAttributes, MouseEvent, PointerEvent, TouchEvent } from 'react';
+ import { useEffect, useMemo, useRef, useState } from 'react';
+ 
+-import { Caveat } from 'next/font/google';
++import localFont from 'next/font/local';
+ 
+ import { Trans } from '@lingui/macro';
+ import { Undo2, Upload } from 'lucide-react';
+@@ -24,9 +24,9 @@ import { cn } from '../../lib/utils';
+ import { getSvgPathFromStroke } from './helper';
+ import { Point } from './point';
+ 
+-const fontCaveat = Caveat({
+-  weight: ['500'],
+-  subsets: ['latin'],
++const fontCaveat = localFont({
++  src: '../Caveat.ttf',
++  weight: '500',
+   display: 'swap',
+   variable: '--font-caveat',
+ });
+diff --git a/packages/ui/primitives/template-flow/add-template-fields.tsx b/packages/ui/primitives/template-flow/add-template-fields.tsx
+index 13d96b56..797d2489 100644
+--- a/packages/ui/primitives/template-flow/add-template-fields.tsx
++++ b/packages/ui/primitives/template-flow/add-template-fields.tsx
+@@ -2,7 +2,7 @@
+ 
+ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+ 
+-import { Caveat } from 'next/font/google';
++import localFont from 'next/font/local';
+ 
+ import { Trans, msg } from '@lingui/macro';
+ import { useLingui } from '@lingui/react';
+@@ -64,9 +64,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from '../form/form'
+ import { useStep } from '../stepper';
+ import type { TAddTemplateFieldsFormSchema } from './add-template-fields.types';
+ 
+-const fontCaveat = Caveat({
+-  weight: ['500'],
+-  subsets: ['latin'],
++const fontCaveat = localFont({
++  src: '../Caveat.ttf',
++  weight: '500',
+   display: 'swap',
+   variable: '--font-caveat',
+ });
