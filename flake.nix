@@ -33,7 +33,7 @@
         installer = pkgs.buildNpmPackage {
             name = "documenso";
             src = ./.;
-            npmDepsHash = "sha256-5Mjjice9n4+dZrGM62encxQ3bpxc52QmgF2bNgN2pEM=";
+            npmDepsHash = "sha256-E7iyBsUt8TbLQjovZbgJmwRUhHkrsPckDT3MUWqG7t0=";
             makeCacheWritable = true;
             dontNpmInstall = true;
             dontNpmBuild = true;
@@ -71,8 +71,13 @@
               cp "${gfonts}/share/fonts/truetype/Caveat[wght].ttf" apps/web/src/app/Caveat.ttf
               cp "${gfonts}/share/fonts/truetype/Caveat[wght].ttf" packages/ui/primitives/Caveat.ttf
             '';
-            buildPhase = ''
+            buildPhase = let
+
+            in ''
               NODE_PATH=$NODE_PATH:$out/node_modules
+
+              PATH=$PATH:$out/node_modules/.bin:$out/packages/prisma/node_modules/.bin
+              
               mkdir -p out
               mkdir -p $out/node_modules
               ./node_modules/.bin/turbo prune --scope=@documenso/web --docker --out-dir out
