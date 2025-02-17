@@ -33,7 +33,7 @@
         installer = pkgs.buildNpmPackage {
             name = "documenso";
             src = ./.;
-            npmDepsHash = "sha256-ItXhq++p5zSdpP5HuBNiMNTOCz5Vim4SpIobjoL7fGk=";
+            npmDepsHash = "sha256-5Mjjice9n4+dZrGM62encxQ3bpxc52QmgF2bNgN2pEM=";
             makeCacheWritable = true;
             dontNpmInstall = true;
             dontNpmBuild = true;
