@@ -33,7 +33,7 @@
         installer = pkgs.buildNpmPackage {
             name = "documenso";
             src = ./.;
-            npmDepsHash = "sha256-E7iyBsUt8TbLQjovZbgJmwRUhHkrsPckDT3MUWqG7t0=";
+            npmDepsHash = "sha256-zyAMbBapdwNjDDDp/DEplkDla82X3U/PC2xLVmO/yXo=";
             makeCacheWritable = true;
             dontNpmInstall = true;
             dontNpmBuild = true;
@@ -46,6 +46,7 @@
               pkgs.vips
 
               pkgs.breakpointHook
+              pkgs.toybox
               # pkgs.node-gyp
               # pkgs.node-pre-gyp
             ];
@@ -74,9 +75,9 @@
             buildPhase = let
 
             in ''
-              NODE_PATH=$NODE_PATH:$out/node_modules
+              export NODE_PATH=$NODE_PATH:$out/node_modules
 
-              PATH=$PATH:$out/node_modules/.bin:$out/packages/prisma/node_modules/.bin
+              export PATH=$PATH:$out/node_modules/.bin:$out/packages/prisma/node_modules/.bin
               
               mkdir -p out
               mkdir -p $out/node_modules
@@ -85,11 +86,16 @@
               cp -a out/json/. $out
               cp out/package-lock.json $out
               cp lingui.config.ts $out
+
               cp -a out/full/. $out
 
               cp turbo.json $out
 
               cd $out
+
+              substituteInPlace $out/packages/prisma/node_modules/.bin/prisma-json-types-generator \
+                $out/packages/prisma/node_modules/.bin/zod-prisma-types \
+                --replace-warn "#!/usr/bin/env node" "#!${lib.getExe pkgs.nodejs}"
 
               ./node_modules/.bin/turbo run build --filter=@documenso/web...
             '';
