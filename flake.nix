@@ -84,7 +84,7 @@
               ./node_modules/.bin/turbo prune --scope=@documenso/web --docker --out-dir out
               cp -r node_modules $out/
               cp -a out/json/. $out
-              cp out/package-lock.json $out
+              cp ./package-lock.json $out
               cp lingui.config.ts $out
 
               cp -a out/full/. $out
