@@ -111,6 +111,8 @@
               TURBO_API = "localhost";
 
               NEXT_TELEMETRY_DISABLED = 1;
+              NEXT_PRIVATE_ENCRYPTION_KEY="CAFEBABE";
+              NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY="DEADBEEF";
               PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/query-engine";
               PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
               PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
