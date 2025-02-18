@@ -110,7 +110,8 @@
               TURBO_NO_UPDATE_NOTIFIER = 1;
               DO_NOT_TRACK = 1;
               TURBO_API = "localhost";
-              DATABASE_URL = "file:./tmp.db";
+              NEXT_PRIVATE_DATABASE_URL = "postgresql://doc:doc@localhost:5432/documenso";
+              NEXT_PRIVATE_DIRECT_DATABASE_URL = "postgresql://doc:doc@localhost:5432/documenso";
 
               NEXT_TELEMETRY_DISABLED = 1;
               NEXT_PRIVATE_ENCRYPTION_KEY="CAFEBABE";
