@@ -32,17 +32,17 @@
       perSystem = { pkgs, ... }: let
         my-prisma-engines = pkgs.rustPlatform.buildRustPackage rec {
         pname = "prisma-engines";
-        version = "6.3.0";
+        version = "5.4.2";
 
         src = pkgs.fetchFromGitHub {
           owner = "prisma";
           repo = "prisma-engines";
           rev = version;
-          hash = "sha256-gQLDskabTaNk19BJi9Kv4TiEfVck2QZ7xdhopt5KH6M=";
+          hash = "";
         };
 
         useFetchCargoVendor = true;
-        cargoHash = "sha256-GLOGivOH8psE5/M5kYakh9Cab4Xe5Q8isY1c6YDyAB8=";
+        cargoHash = "";
 
         # Use system openssl.
         OPENSSL_NO_VENDOR = 1;
