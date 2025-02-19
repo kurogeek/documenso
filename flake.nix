@@ -39,14 +39,14 @@
             rev = version;
             sha256 = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
           };
-          cargoHash = "";
-          # cargoDeps = prev.cargoDeps.overrideAttrs (_: {
-          #   name = "${name}-vendor";
-          #   inherit src;
-          #   # outputHashMode = "recursive";
-          #   outputHashAlgo = "sha256";
-          #   outputHash = "";
-          # });
+          # cargoHash = "sha256-N6t7wmYPHz5B7+d2PGz59H1EoqQlmfJ2VSnwzQNEfr4=";
+          cargoDeps = prev.cargoDeps.overrideAttrs (_: {
+            name = "${name}-vendor";
+            inherit src;
+            # outputHashMode = "recursive";
+            outputHashAlgo = "sha256";
+            outputHash = "";
+          });
         });
 
         installer = pkgs.buildNpmPackage {
