@@ -45,7 +45,7 @@
             inherit src;
             outputHashMode = "recursive";
             outputHashAlgo = "sha256";
-            outputHash = "";
+            outputHash = "sha256-N6t7wmYPHz5B7+d2PGz59H1EoqQlmfJ2VSnwzQNEfr4=";
           });
         });
 
