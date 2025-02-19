@@ -43,7 +43,7 @@
           cargoDeps = prev.cargoDeps.overrideAttrs (_: {
             name = "${name}-vendor";
             inherit src;
-            # outputHashMode = "recursive";
+            outputHashMode = "recursive";
             outputHashAlgo = "sha256";
             outputHash = "";
           });
