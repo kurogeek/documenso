@@ -30,22 +30,71 @@
         process-compose-flake.flakeModule
       ];
       perSystem = { pkgs, ... }: let
-        my-prisma-engines = pkgs.prisma-engines.overrideAttrs (prev: rec {
-          name = "prisma-engines";
-          version = "5.4.2";
-          src = pkgs.fetchFromGitHub {
-            owner = "prisma";
-            repo = "prisma-engines";
-            rev = version;
-            sha256 = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
-          };
-          # cargoHash = "sha256-N6t7wmYPHz5B7+d2PGz59H1EoqQlmfJ2VSnwzQNEfr4=";
-          cargoDeps = prev.cargoDeps.overrideAttrs {
-            name = "${name}-vendor.tar.gz";
-            inherit src;
-            outputHash = "sha256-N6t7wmYPHz5B7+d2PGz59H1EoqQlmfJ2VSnwzQNEfr4=";
-          };
-        });
+        my-prisma-engines = pkgs.rustPlatform.buildRustPackage rec {
+        pname = "prisma-engines";
+        version = "6.3.0";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "prisma";
+          repo = "prisma-engines";
+          rev = version;
+          hash = "sha256-gQLDskabTaNk19BJi9Kv4TiEfVck2QZ7xdhopt5KH6M=";
+        };
+
+        useFetchCargoVendor = true;
+        cargoHash = "sha256-GLOGivOH8psE5/M5kYakh9Cab4Xe5Q8isY1c6YDyAB8=";
+
+        # Use system openssl.
+        OPENSSL_NO_VENDOR = 1;
+
+        nativeBuildInputs = [ pkgs.pkg-config ];
+
+        buildInputs = [ pkgs.openssl ];
+
+        preBuild = ''
+          export OPENSSL_DIR=${lib.getDev pkgs.openssl}
+          export OPENSSL_LIB_DIR=${lib.getLib pkgs.openssl}/lib
+
+          export PROTOC=${pkgs.protobuf}/bin/protoc
+          export PROTOC_INCLUDE="${pkgs.protobuf}/include";
+
+          export SQLITE_MAX_VARIABLE_NUMBER=250000
+          export SQLITE_MAX_EXPR_DEPTH=10000
+
+          export GIT_HASH=0000000000000000000000000000000000000000
+        '';
+
+        cargoBuildFlags = [
+          "-p"
+          "query-engine"
+          "-p"
+          "query-engine-node-api"
+          "-p"
+          "schema-engine-cli"
+          "-p"
+          "prisma-fmt"
+        ];
+
+        postInstall = ''
+          mv $out/lib/libquery_engine${pkgs.stdenv.hostPlatform.extensions.sharedLibrary} $out/lib/libquery_engine.node
+        '';
+
+        # Tests are long to compile
+        doCheck = false;
+
+        meta = with lib; {
+          description = "Collection of engines that power the core stack for Prisma";
+          homepage = "https://www.prisma.io/";
+          license = licenses.asl20;
+          platforms = platforms.unix;
+          mainProgram = "prisma";
+          maintainers = with maintainers; [
+            pimeys
+            tomhoule
+            aqrln
+          ];
+        };
+      };
 
         installer = pkgs.buildNpmPackage {
             name = "documenso";
