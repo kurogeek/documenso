@@ -77,7 +77,7 @@
             '';
             preBuild = ''
               rm ./node_modules/.bin/prisma
-              ln -s ${lib.getExe pkgs.prisma} ./node_modules/.bin/prisma
+              ln -s ${lib.getExe' pkgs.prisma "prisma"} ./node_modules/.bin/prisma
             '';
             buildPhase = let
 
