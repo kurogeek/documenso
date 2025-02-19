@@ -42,7 +42,8 @@
           cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
             inherit src;
             name = "${name}-vendor";
-            outputHash = lib.fakeHash;
+            outputHash = "sha256-${lib.fakeSha256}";
+            outputHashMode = "flat";
           });
         });
 
