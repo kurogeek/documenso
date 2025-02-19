@@ -42,7 +42,7 @@
           cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
             name = "${name}-vendor.tar.gz";
             inherit src;
-            hash = "sha256-vJV3TV8XuILXeORkK7Xsj7GoFRpSiKCyKJ4zLBMWI7I=";
+            outputHash = "";
           });
         });
 
