@@ -40,8 +40,6 @@
             hash = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
           };
           cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
-            inherit src;
-            name = "${name}-vendor";
             outputHash = "sha256-vJV3TV8XuILXeORkK7Xsj7GoFRpSiKCyKJ4zLBMWI7I=";
           });
         });
@@ -161,6 +159,7 @@
 
           default = installer;
           prisma = my-prisma-engines;
+          original-prisma = pkgs.prism;
 
           devshells.default = {
             env = [
