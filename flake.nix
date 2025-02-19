@@ -42,7 +42,7 @@
           cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
             inherit src;
             name = "${name}-vendor";
-            outputHash = "1qiib37qlm1z239mfr5020m4a1ig2abhlnwava7il8dqvrxzsxpl";
+            outputHash = "sha256-1qiib37qlm1z239mfr5020m4a1ig2abhlnwava7il8dqvrxzsxpl";
           });
         });
 
