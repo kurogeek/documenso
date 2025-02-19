@@ -40,7 +40,7 @@
             sha256 = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
           };
           cargoDeps = pkgs.rustPlatform.fetchCargoTarball {
-            inherit src name version;
+            inherit src name;
             hash = "";
           };
         });
