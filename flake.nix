@@ -37,12 +37,12 @@
             owner = "prisma";
             repo = "prisma-engines";
             rev = version;
-            hash = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
+            sha256 = "";
           };
-          cargoDeps = prev.cargoDeps.overrideAttrs (_: {
+          cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
             name = "${name}-vendor.tar.gz";
             inherit src;
-            outputHash = "sha256-vJV3TV8XuILXeORkK7Xsj7GoFRpSiKCyKJ4zLBMWI7I=";
+            outputHash = "";
           });
         });
 
