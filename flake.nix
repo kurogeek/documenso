@@ -46,12 +46,12 @@
         };
 
         useFetchCargoVendor = true;
-        cargoHash = "";
+        cargoHash = "sha256-GNjZIuigShyPFSjXOZe3/AaK25L00HX5bpD2J68eT1U=";
 
         # Use system openssl.
         OPENSSL_NO_VENDOR = 1;
 
-        nativeBuildInputs = [ pkgs.pkg-config oldrustc ];
+        nativeBuildInputs = [ pkgs.pkg-config ];
 
         buildInputs = [ pkgs.openssl ];
 
