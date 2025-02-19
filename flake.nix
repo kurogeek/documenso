@@ -38,7 +38,7 @@
             rev = version;
             hash = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
           };
-          cargoLock.lockFile = "${src}/Cargo.lock";
+          cargoHash = "";
 
         });
         installer = pkgs.buildNpmPackage {
