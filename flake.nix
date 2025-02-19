@@ -31,7 +31,7 @@
       ];
       perSystem = { pkgs, ... }: let
         my-prisma-engines = pkgs.prisma-engines.overrideAttrs (prev: rec {
-
+          name = "prisma-engines";
           version = "5.4.2";
           src = pkgs.fetchFromGitHub {
             owner = "prisma";
@@ -39,8 +39,9 @@
             rev = version;
             hash = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
           };
-          cargoDeps = prev.cargoDeps.overrideAttrs (_: {
+          cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
             inherit src;
+            name = "${name}-vendor";
             outputHash = "";
           });
         });
