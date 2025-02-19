@@ -30,6 +30,10 @@
         process-compose-flake.flakeModule
       ];
       perSystem = { pkgs, ... }: let
+        oldrustc = pkgs.rustc.overrideAttrs {
+          version = "1.79.0";
+          hash = "";
+        };
         my-prisma-engines = pkgs.rustPlatform.buildRustPackage rec {
         pname = "prisma-engines";
         version = "5.4.2";
@@ -38,7 +42,7 @@
           owner = "prisma";
           repo = "prisma-engines";
           rev = version;
-          hash = "";
+          hash = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
         };
 
         useFetchCargoVendor = true;
@@ -47,7 +51,7 @@
         # Use system openssl.
         OPENSSL_NO_VENDOR = 1;
 
-        nativeBuildInputs = [ pkgs.pkg-config ];
+        nativeBuildInputs = [ pkgs.pkg-config oldrustc ];
 
         buildInputs = [ pkgs.openssl ];
 
