@@ -30,9 +30,14 @@
         process-compose-flake.flakeModule
       ];
       perSystem = { pkgs, ... }: let
-        prisma-engines = pkgs.prisma-engines.overrideAttrs (final: prev: {
+        my-prisma-engines = pkgs.prisma-engines.overrideAttrs (final: prev: rec {
           version = "5.4.2";
-          
+          src = pkgs.fetchFromGitHub {
+            owner = "prisma";
+            repo = "prisma-engines";
+            rev = version;
+            hash = "";
+          };
         });
         installer = pkgs.buildNpmPackage {
             name = "documenso";
@@ -126,9 +131,9 @@
               NEXT_TELEMETRY_DISABLED = 1;
               NEXT_PRIVATE_ENCRYPTION_KEY="CAFEBABE";
               NEXT_PRIVATE_ENCRYPTION_SECONDARY_KEY="DEADBEEF";
-              PRISMA_QUERY_ENGINE_BINARY = "${prisma-engines}/bin/query-engine";
-              PRISMA_QUERY_ENGINE_LIBRARY = "${prisma-engines}/lib/libquery_engine.node";
-              PRISMA_SCHEMA_ENGINE_BINARY = "${prisma-engines}/bin/schema-engine";
+              PRISMA_QUERY_ENGINE_BINARY = "${my-prisma-engines}/bin/query-engine";
+              PRISMA_QUERY_ENGINE_LIBRARY = "${my-prisma-engines}/lib/libquery_engine.node";
+              PRISMA_SCHEMA_ENGINE_BINARY = "${my-prisma-engines}/bin/schema-engine";
               PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
               PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = true;
             };
