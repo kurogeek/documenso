@@ -39,12 +39,10 @@
             rev = version;
             sha256 = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
           };
-          cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
-            name = "${name}-vendor.tar.gz";
-            inherit src;
-            outputHashMode = "recursive";
-            outputHash = "sha256-N6t7wmYPHz5B7+d2PGz59H1EoqQlmfJ2VSnwzQNEfr4=";
-          });
+          cargoDeps = pkgs.rustPlatform.fetchCargoTarball {
+            inherit src name version;
+            hash = "";
+          };
         });
 
         installer = pkgs.buildNpmPackage {
