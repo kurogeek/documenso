@@ -44,6 +44,7 @@
             name = "${name}-vendor";
             inherit src;
             # outputHashMode = "recursive";
+            outputHashAlgo = "sha256";
             outputHash = "";
           });
         });
