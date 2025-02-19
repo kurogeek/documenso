@@ -38,7 +38,7 @@
             rev = version;
             hash = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
           };
-          cargoHash = "sha256-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=";
+          cargoHash = "";
 
         });
         installer = pkgs.buildNpmPackage {
