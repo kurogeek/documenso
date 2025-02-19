@@ -30,7 +30,8 @@
         process-compose-flake.flakeModule
       ];
       perSystem = { pkgs, ... }: let
-        my-prisma-engines = pkgs.prisma-engines.overrideAttrs rec {
+        my-prisma-engines = pkgs.prisma-engines.overrideAttrs (prev: rec {
+
           version = "5.4.2";
           src = pkgs.fetchFromGitHub {
             owner = "prisma";
@@ -38,10 +39,12 @@
             rev = version;
             hash = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
           };
-          cargoDeps = "";
-          cargoHash = "";
+          cargoDeps = prev.cargoDeps.overrideAttrs (_: {
+            inherit src;
+            outputHash = "";
+          });
+        });
 
-        };
         installer = pkgs.buildNpmPackage {
             name = "documenso";
             src = ./.;
