@@ -43,7 +43,7 @@
             name = "${name}-vendor.tar.gz";
             inherit src;
             outputHashMode = "recursive";
-            outputHash = "sha256-vJV3TV8XuILXeORkK7Xsj7GoFRpSiKCyKJ4zLBMWI7I=";
+            outputHash = "sha256-N6t7wmYPHz5B7+d2PGz59H1EoqQlmfJ2VSnwzQNEfr4=";
           });
         });
 
