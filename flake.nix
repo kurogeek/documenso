@@ -39,6 +39,7 @@
             rev = version;
             sha256 = "sha256-iO8KVbAPYtlRl4FyaX51Wz/6Wt4GOxkESEGGrmGTGak=";
           };
+          cargoHash = "";
           cargoDeps = prev.cargoDeps.overrideAttrs (lib.const {
             name = "${name}-vendor.tar.gz";
             inherit src;
