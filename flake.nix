@@ -30,6 +30,7 @@
         process-compose-flake.flakeModule
       ];
       perSystem = { pkgs, ... }: let
+        # prisma-engines = pkgs.prisma-engines.overrideAttrs
         installer = pkgs.buildNpmPackage {
             name = "documenso";
             src = ./.;
@@ -59,6 +60,7 @@
               pkgs.prisma-engines
               pkgs.cacert
               pkgs.vim
+              pkgs.prisma
             ];
             patches = [
               ./fonts.patch
@@ -73,6 +75,10 @@
               cp "${gfonts}/share/fonts/truetype/Caveat[wght].ttf" apps/web/src/app/Caveat.ttf
               cp "${gfonts}/share/fonts/truetype/Caveat[wght].ttf" packages/ui/primitives/Caveat.ttf
             '';
+            preBuild = ''
+              rm ./node_modules/.bin/prisma
+              ln -s ${lib.getExe pkgs.prisma} ./node_modules/.bin/prisma
+            '';
             buildPhase = let
 
             in ''
@@ -83,7 +89,7 @@
               mkdir -p out
               mkdir -p $out/node_modules
               ./node_modules/.bin/turbo prune --scope=@documenso/web --docker --out-dir out
-              cp -r node_modules $out/
+              cp -a node_modules $out/
               cp -a out/json/. $out
               cp ./package-lock.json $out
               cp lingui.config.ts $out
