@@ -32,7 +32,7 @@
       perSystem = { pkgs, ... }: let
         prisma-engines = pkgs.prisma-engines.overrideAttrs (final: prev: {
           version = "5.4.2";
-          src.outputHash = "";
+          
         });
         installer = pkgs.buildNpmPackage {
             name = "documenso";
