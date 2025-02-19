@@ -59,6 +59,7 @@
               pkgs.prisma-engines
               pkgs.cacert
               pkgs.vim
+              pkgs.prisma
             ];
             patches = [
               ./fonts.patch
@@ -106,6 +107,7 @@
             '';
             env = {
               HUSKY = 0;
+              DOCKER_OUTPUT = 1;
               TURBO_TELEMETRY_DISABLED = 1;
               TURBO_NO_UPDATE_NOTIFIER = 1;
               DO_NOT_TRACK = 1;
