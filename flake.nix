@@ -155,6 +155,7 @@
         packages = {
 
           default = installer;
+          prisma = my-prisma-engines;
 
           devshells.default = {
             env = [
